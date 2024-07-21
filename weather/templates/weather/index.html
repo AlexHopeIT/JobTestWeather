@@ -1,0 +1,21 @@
+{% extends 'weather/base.html' %}
+<title> Погода </title>
+
+{% block content %}
+<h1>
+    Узнай погоду в любом городе планеты!
+</h1>
+<p>
+    Выбери город и узнай погоду прямо сейчас!
+</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Узнать погоду</button>
+</form>
+{% if weather_data %}
+    <h2>Погода в {{ weather_data.city }}</h2>
+    <p>Температура: {{ weather_data.temperature }}°C</p>
+    <p>Описание: {{ weather_data.description }}</p>
+{% endif %}
+{% endblock %}
